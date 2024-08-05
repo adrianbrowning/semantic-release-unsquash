@@ -25,7 +25,7 @@ export function modifySquashedCommits(context) {
 
       const newCommit = {
         ...commit,
-        subject: subject,
+        subject,
         body: body.join('\n'),
         message: commitLines.join('\n'),
       };
@@ -36,5 +36,3 @@ export function modifySquashedCommits(context) {
 
   return modifiedCommits;
 }
-
-module.exports = { modifySquashedCommits };

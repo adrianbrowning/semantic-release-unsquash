@@ -4,7 +4,7 @@ import { verifyConditions as originalGit } from '@semantic-release/git';
 import { verifyConditions as originalGitHub } from '@semantic-release/github';
 import { generateNotes as originalGenerateNotes } from '@semantic-release/release-notes-generator';
 
-import { modifySquashedCommits } from './get-unsquashed-commits.js';
+import { modifySquashedCommits } from './get-unsquashed-commits';
 
 export async function analyzeCommits(pluginConfig, context) {
   const { commitAnalyzerConfig } = pluginConfig || {};
