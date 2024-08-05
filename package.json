@@ -5,15 +5,15 @@
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/romap0/semantic-release-unsquash.git"
+    "url": " git@github.com:adrianbrowning/semantic-release-unsquash.git"
   },
-  "author": "Roman Pavlov <hi@romap0.dev>",
+  "author": "Adrian Elton-Browning <gingacodemonkey@gmail.com>",
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/romap0/semantic-release-unsquash/issues"
+    "url": "https://github.com/adrianbrowning/semantic-release-unsquash/issues"
   },
-  "homepage": "https://github.com/romap0/semantic-release-unsquash#readme",
+  "homepage": "https://github.com/adrianbrowning/semantic-release-unsquash#readme",
   "keywords": [
     "changelog",
     "commit-analyzer",
