@@ -1,30 +1,57 @@
-const {
-  analyzeCommits: originalAnalyzeCommits,
-} = require('@semantic-release/commit-analyzer');
-const {
-  generateNotes: originalGenerateNotes,
-} = require('@semantic-release/release-notes-generator');
+import { verifyConditions as originalChangeLog } from '@semantic-release/changelog';
+import { analyzeCommits as originalAnalyzeCommits } from '@semantic-release/commit-analyzer';
+import { verifyConditions as originalGit } from '@semantic-release/git';
+import { verifyConditions as originalGitHub } from '@semantic-release/github';
+import { generateNotes as originalGenerateNotes } from '@semantic-release/release-notes-generator';
 
-const { getUnsquashedCommits } = require('./get-unsquashed-commits');
+import { modifySquashedCommits } from './get-unsquashed-commits';
 
-const analyzeCommits = async (pluginConfig, context) => {
+export async function analyzeCommits(pluginConfig, context) {
   const { commitAnalyzerConfig } = pluginConfig || {};
-  const commits = getUnsquashedCommits(context);
+  const commits = modifySquashedCommits(context);
 
   return originalAnalyzeCommits(commitAnalyzerConfig ?? {}, {
     ...context,
     commits,
   });
-};
+}
 
-const generateNotes = async (pluginConfig, context) => {
+export async function generateNotes(pluginConfig, context) {
   const { notesGeneratorConfig } = pluginConfig || {};
-  const commits = getUnsquashedCommits(context);
+  const commits = modifySquashedCommits(context);
 
   return originalGenerateNotes(notesGeneratorConfig ?? {}, {
     ...context,
     commits,
   });
-};
+}
 
-module.exports = { analyzeCommits, generateNotes };
+export async function generateChangelog(pluginConfig, context) {
+  const { changeLogConfig } = pluginConfig || {};
+  const commits = modifySquashedCommits(context);
+
+  return originalChangeLog(changeLogConfig ?? {}, {
+    ...context,
+    commits,
+  });
+}
+
+export async function generateGit(pluginConfig, context) {
+  const { gitConfig } = pluginConfig || {};
+  const commits = modifySquashedCommits(context);
+
+  return originalGit(gitConfig ?? {}, {
+    ...context,
+    commits,
+  });
+}
+
+export async function generateGitHub(pluginConfig, context) {
+  const { gitHubConfig } = pluginConfig || {};
+  const commits = modifySquashedCommits(context);
+
+  return originalGitHub(gitHubConfig ?? {}, {
+    ...context,
+    commits,
+  });
+}

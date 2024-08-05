@@ -1,26 +1,40 @@
-const getUnsquashedCommits = (context) => {
+//documentation about semantic-release plugins contexts: https://semantic-release.gitbook.io/semantic-release/developer-guide/plugin#context
+export function modifySquashedCommits(context) {
   const { commits } = context;
+  const { logger } = context;
 
-  return commits.reduce((acc, commit) => {
-    if (!commit.body.startsWith('* ')) {
-      return [...acc, commit];
+  const modifiedCommits = [];
+
+  for (const commit of commits) {
+    //logger.log('Commit: ' + commit.body);
+    //logger.log('Subject: ' + commit.subject);
+    //logger.log('Message: ' + commit.message);
+    const commitLines = commit.message.split('\n');
+    if (commitLines.length < 2) {
+      logger.log('Skipping github commit: ' + commit.message);
+      const newCommit = {
+        ...commit,
+      };
+      modifiedCommits.push(newCommit);
+    } else {
+      logger.log('Found github commit: ' + commit.message);
+
+      commitLines.shift();
+      commitLines.shift();
+      const [subject, , ...body] = commitLines;
+
+      const newCommit = {
+        ...commit,
+        subject: subject,
+        body: body.join('\n'),
+        message: commitLines.join('\n'),
+      };
+      logger.log('Modified commit: ' + newCommit.message);
+      modifiedCommits.push(newCommit);
     }
+  }
 
-    const squashedCommits = commit.body.split('*').map((line) => line.trim());
+  return modifiedCommits;
+}
 
-    return [
-      ...acc,
-      ...squashedCommits.map((squashedCommit) => {
-        const [subject, , ...body] = squashedCommit.split('\n');
-        return {
-          ...commit,
-          subject,
-          body: body.join('\n'),
-          message: squashedCommit,
-        };
-      }),
-    ];
-  }, []);
-};
-
-module.exports = { getUnsquashedCommits };
+module.exports = { modifySquashedCommits };
