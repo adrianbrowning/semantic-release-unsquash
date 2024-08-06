@@ -9,6 +9,7 @@ A tiny wrapper for [commit-analyzer](https://github.com/semantic-release/commit-
 ## Install
 
 ```bash
+$ pnpm add -D @gingacodemonkey/semantic-release-unsquash
 $ npm install -D @gingacodemonkey/semantic-release-unsquash
 ```
 
