@@ -1,13 +1,15 @@
+** This is a for of [semantic-release-unsquash](https://www.npmjs.com/package/semantic-release-unsquash)
+
 # **semantic-release-unsquash**
 
 A tiny wrapper for [commit-analyzer](https://github.com/semantic-release/commit-analyzer) and [release-notes-generator](https://github.com/semantic-release/release-notes-generator) which works with squashed MRs
 
-[![npm latest version](https://img.shields.io/npm/v/semantic-release-unsquash/latest.svg)](https://www.npmjs.com/package/semantic-release-unsquash)
+[![npm latest version](https://img.shields.io/npm/v/@gingacodemonkey/semantic-release-unsquash/latest.svg)](https://www.npmjs.com/package/@gingacodemonkey/semantic-release-unsquash)
 
 ## Install
 
 ```bash
-$ npm install -D semantic-release-unsquash
+$ npm install -D @gingacodemonkey/semantic-release-unsquash
 ```
 
 ## Usage
