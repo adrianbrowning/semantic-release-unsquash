@@ -1,6 +1,6 @@
-** This is a for of [semantic-release-unsquash](https://www.npmjs.com/package/semantic-release-unsquash)
+** This is a fork of [semantic-release-unsquash](https://www.npmjs.com/package/semantic-release-unsquash) **
 
-# **semantic-release-unsquash**
+# **@gingacodemonkey/semantic-release-unsquash**
 
 A tiny wrapper for [commit-analyzer](https://github.com/semantic-release/commit-analyzer) and [release-notes-generator](https://github.com/semantic-release/release-notes-generator) which works with squashed MRs
 
